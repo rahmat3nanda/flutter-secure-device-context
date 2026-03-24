@@ -21,7 +21,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: id.nesd.secure_device_context
+        package: id.nesd.secure_device_context_plugin
         pluginClass: SecureDeviceContextPlugin
       ios:
         pluginClass: SecureDeviceContextPlugin

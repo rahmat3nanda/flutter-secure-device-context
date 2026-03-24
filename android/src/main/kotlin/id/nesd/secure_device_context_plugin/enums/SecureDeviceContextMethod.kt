@@ -1,8 +1,8 @@
-package id.nesd.secure_device_context.enums
+package id.nesd.secure_device_context_plugin.enums
 
 enum class SecureDeviceContextMethod(val value: String) {
     IS_DEV_MODE("is_dev_mode"),
-    IS_ROOTED("is_rooted"),
+    IS_JAILBREAK("is_jailbreak"),
     IS_EMULATOR("is_emulator"),
     IS_DEBUG_MODE("is_debug_mode"),
     STATUS("status"),

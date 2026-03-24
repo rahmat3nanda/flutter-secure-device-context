@@ -1,4 +1,4 @@
-package id.nesd.secure_device_context
+package id.nesd.secure_device_context_plugin
 
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel

@@ -1,4 +1,4 @@
-group = "id.nesd.secure_device_context"
+group = "id.nesd.secure_device_context_plugin"
 version = "1.0-SNAPSHOT"
 
 buildscript {

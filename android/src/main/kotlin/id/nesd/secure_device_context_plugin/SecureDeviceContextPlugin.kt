@@ -1,7 +1,8 @@
-package id.nesd.secure_device_context
+package id.nesd.secure_device_context_plugin
 
 import android.content.Context
-import id.nesd.secure_device_context.enums.SecureDeviceContextMethod
+import id.nesd.secure_device_context.SecureDeviceContext
+import id.nesd.secure_device_context_plugin.enums.SecureDeviceContextMethod
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -27,7 +28,7 @@ class SecureDeviceContextPlugin : FlutterPlugin, MethodCallHandler {
                 result.success(secureContext.isDevMode())
             }
 
-            SecureDeviceContextMethod.IS_ROOTED -> {
+            SecureDeviceContextMethod.IS_JAILBREAK -> {
                 result.success(secureContext.isRooted())
             }
 
