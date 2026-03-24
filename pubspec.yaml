@@ -1,7 +1,8 @@
 name: secure_device_context
-description: "A new Flutter project."
+description: "A Flutter plugin that retrieves the mobile device's security context. It detects root, emulator, jailbreak, debugger, and dev_mode natively."
 version: 1.0.0
 homepage: https://github.com/rahmat3nanda/flutter-secure-device-context
+repository: https://github.com/rahmat3nanda/flutter-secure-device-context
 
 environment:
   sdk: ^3.8.1
