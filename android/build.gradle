@@ -28,7 +28,7 @@ apply plugin: "kotlin-android"
 android {
     namespace = "id.nesd.secure_device_context"
 
-    compileSdk = 35
+    compileSdk = 36
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

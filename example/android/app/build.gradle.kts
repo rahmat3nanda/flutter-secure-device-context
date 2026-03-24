@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "id.nesd.secure_device_context_example"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 36
 //    ndkVersion = flutter.ndkVersion
     ndkVersion = "27.0.12077973"
 
