@@ -16,40 +16,60 @@ class MethodChannelSecureDeviceContext extends SecureDeviceContextPlatform {
     'secure_device_context',
   );
 
-  @override
-  Future<bool?> isDevMode() => methodChannel.invokeMethod<bool>(
-    SecureDeviceContextMethod.isDevMode.value,
-  );
+  Future<T?> _invoke<T>(SecureDeviceContextMethod method) async {
+    try {
+      return await methodChannel.invokeMethod<T>(method.value);
+    } catch (_) {
+      rethrow;
+    }
+  }
 
   @override
-  Future<bool?> isJailbreak() => methodChannel.invokeMethod<bool>(
-    SecureDeviceContextMethod.isJailbreak.value,
-  );
+  Future<bool?> isDevMode() =>
+      _invoke<bool>(SecureDeviceContextMethod.isDevMode);
 
   @override
-  Future<bool?> isEmulator() => methodChannel.invokeMethod<bool>(
-    SecureDeviceContextMethod.isEmulator.value,
-  );
+  Future<bool?> isJailbreak() =>
+      _invoke<bool>(SecureDeviceContextMethod.isJailbreak);
 
   @override
-  Future<bool?> isDebugMode() => methodChannel.invokeMethod<bool>(
-    SecureDeviceContextMethod.isDebugMode.value,
-  );
+  Future<bool?> isEmulator() =>
+      _invoke<bool>(SecureDeviceContextMethod.isEmulator);
 
   @override
-  Future<Map<String, dynamic>?> status() =>
-      methodChannel.invokeMethod<Map<String, dynamic>>(
-        SecureDeviceContextMethod.status.value,
-      );
+  Future<bool?> isDebugMode() =>
+      _invoke<bool>(SecureDeviceContextMethod.isDebugMode);
 
   @override
-  Future<List<SecureContext>?> contexts() =>
-      methodChannel.invokeMethod<List<SecureContext>>(
-        SecureDeviceContextMethod.contexts.value,
-      );
+  Future<Map<String, dynamic>?> status() async {
+    final Map<Object?, Object?>? result = await _invoke<Map<Object?, Object?>>(
+      SecureDeviceContextMethod.status,
+    );
+    return result?.map(
+      (Object? key, Object? value) =>
+          MapEntry<String, dynamic>(key.toString(), value),
+    );
+  }
 
   @override
-  Future<RiskLevel?> riskLevel() => methodChannel.invokeMethod<RiskLevel>(
-    SecureDeviceContextMethod.riskLevel.value,
-  );
+  Future<List<SecureContext>?> contexts() async {
+    final List<dynamic>? result = await _invoke<List<dynamic>>(
+      SecureDeviceContextMethod.contexts,
+    );
+    return result
+        ?.map((dynamic e) => SecureContext.fromValue(e.toString()))
+        .whereType<SecureContext>()
+        .toList();
+  }
+
+  @override
+  Future<RiskLevel?> riskLevel() async {
+    final String? result = await _invoke<String>(
+      SecureDeviceContextMethod.riskLevel,
+    );
+    if (result != null) {
+      return RiskLevel.fromValue(result);
+    }
+    return null;
+  }
 }

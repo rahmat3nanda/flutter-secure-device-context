@@ -22,7 +22,7 @@ class SecureDeviceContextPlugin : FlutterPlugin, MethodCallHandler {
 
     override fun onMethodCall(call: MethodCall, result: Result) {
         val secureContext = SecureDeviceContext(context)
-        val method = SecureDeviceContextMethod.valueOf(call.method)
+        val method = SecureDeviceContextMethod.values().find { it.value == call.method }
         when (method) {
             SecureDeviceContextMethod.IS_DEV_MODE -> {
                 result.success(secureContext.isDevMode())
@@ -51,6 +51,7 @@ class SecureDeviceContextPlugin : FlutterPlugin, MethodCallHandler {
             SecureDeviceContextMethod.RISK_LEVEL -> {
                 result.success(secureContext.riskLevel.value)
             }
+            else -> result.notImplemented()
         }
     }
 
