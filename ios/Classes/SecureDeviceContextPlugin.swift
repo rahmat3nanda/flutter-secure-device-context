@@ -2,7 +2,10 @@ import Flutter
 import UIKit
 import SecureDeviceContext
 
+/// The main bridge responsible for fielding Flutter's method channel requests into iOS's `SecureDeviceContext`.
+/// Because Apple does not emit `dev_mode` statuses, those natively resolve to `false` when hit on an iOS device.
 public class SecureDeviceContextPlugin: NSObject, FlutterPlugin {
+    /// Registers the method channel so the underlying Flutter engine can communicate asynchronously.
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "secure_device_context", binaryMessenger: registrar.messenger())
         let instance = SecureDeviceContextPlugin()

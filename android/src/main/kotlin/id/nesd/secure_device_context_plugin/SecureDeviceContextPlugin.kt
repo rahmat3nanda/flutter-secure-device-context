@@ -9,17 +9,22 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 
-/** SecureDeviceContextPlugin */
+/**
+ * Evaluates method channel calls emitted from Dart, translating method names mapping against `SecureDeviceContextMethod` configurations. 
+ * Resolves environmental queries regarding the device environment natively using `SecureDeviceContext`.
+ */
 class SecureDeviceContextPlugin : FlutterPlugin, MethodCallHandler {
     private lateinit var channel: MethodChannel
     private lateinit var context: Context
 
+    /** Bootstraps the plugin channel upon initialization context. */
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         channel = MethodChannel(flutterPluginBinding.binaryMessenger, "secure_device_context")
         context = flutterPluginBinding.applicationContext
         channel.setMethodCallHandler(this)
     }
 
+    /** Translates Dart invoke mappings to their respective functional targets within Android contexts. */
     override fun onMethodCall(call: MethodCall, result: Result) {
         val secureContext = SecureDeviceContext(context)
         val method = SecureDeviceContextMethod.values().find { it.value == call.method }
